@@ -1,0 +1,123 @@
+>>> import shutil
+>>> f1 = open('/etc/hosts')
+>>> f2 = open('/tmp/zj.txt', 'w')
+>>> shutil.copyfileobj(f1, f2)    # copy文件对象
+>>> f1.close()
+>>> f2.close()
+>>> shutil.copyfile('/etc/hosts', '/tmp/abcd.txt')   # copy文件名
+>>> shutil.copy('/etc/hosts', '/tmp/aaaa.txt')   # 目标可能是目录
+>>> shutil.copy('/etc/passwd', '/tmp/')
+>>> shutil.copy2('/etc/passwd', '/tmp/')   # 相当于cp -p
+>>> shutil.copytree('/etc/security', '/tmp/anquan')  # cp -r 目录到目录.后面的目录要不存在,存在用copy。
+>>> shutil.move('/tmp/zj.txt', '/var/tmp/')  # mv
+>>> shutil.rmtree('/tmp/anquan')   # rm -rf
+>>> shutil.rmtree('/var/tmp/zj.txt')   # 不能删除单个文件
+>>> import os
+>>> os.remove('/var/tmp/zj.txt')
+>>> shutil.chown('/tmp/passwd', user='bob', group='bob')
+>>> help(shutil.rmtree)
+
+>>> x = y = 10
+>>> id(x)
+9348224    # 显示变量在内存的地址
+>>> id(y)
+9348224
+>>> x = 20
+>>> id(x)
+9348544
+>>> y       # y的值不变
+>>> a = b = [10, 20]
+>>> id(a)
+140225192670152
+>>> id(b)
+140225192670152
+>>> a[0] = 100
+>>> a
+[100, 20]
+>>> b
+[100, 20]
+
+>>> a, b = 10, 20   # 相当于是a=10; b=20
+>>> a
+10
+>>> b
+20
+>>> a, b = b, a     # a和b的值互换
+
+标识符：就是个名字，包括变量、模块、类、函数
+
+关键字
+>>> import keyword
+>>> keyword.kwlist
+>>> keyword.iskeyword('len')
+>>> 'for' in keyword.kwlist
+
+http://yiyibooks.cn/ -> python352文档 -> 库参考
+
+
+编写程序的流程、步骤：
+1、发呆、思考：在脑海里像过电影一样，想想程序是怎么运行的（交互的？非交互的？）
+交互的：考虑屏幕上提示什么，用户回答什么
+2、思考程序有哪些功能。将这些功能创建函数，编写程序框架
+def get_fname():
+
+
+def get_content():
+
+
+def wfile(fname, content):
+
+
+if __name__ == '__main__':
+    fname = get_fname()
+    content = get_content()
+    wfile(fname, content)
+3、完成函数代码
+
+>>> names = ['bob', 'alice', 'tom']
+>>> max(names)
+>>> min(names)
+
+
+
+字符串格式化
+'' % ()
+>>> '%s: %s' % ('bob', 22)   # %s / %d 常用
+>>> '%s: %d' % ('bob', 22)
+>>> '97 is %c' % 97   # %c转换数字成为对应的ascii码，了解
+>>> '97 is %#o' % 97  # 不常用
+>>> '97 is %#x' % 97  # 不常用
+>>> '10000 is %e' % 10000  # 不常用
+>>> '10/3 is %f' % (10 / 3)  # 不常用
+>>> '10/3 is %d' % (10 / 3)
+>>> '%10s%10s' % ('name', 'age')   # 常用，定义字段宽度为10个字节
+>>> '%-10s%-10s' % ('name', 'age')   # 常用，左对齐
+
+>>> '{}: {}'.format('bob', 22)
+'bob: 22'
+>>> '{}: {}'.format(22, 'bob')
+'22: bob'
+>>> '{1}: {0}'.format(22, 'bob')
+'bob: 22'
+>>> '{0[1]}: {0[0]}'.format([22, 'bob'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
