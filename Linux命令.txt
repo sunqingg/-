@@ -1,0 +1,299 @@
+                                             命令
+Linux命令： 
+  ——用来实现某一类功能的指令或程序（执行命令时，Linux要找到对应的执行文件）
+  ——命令的执行依赖于解释器（默认解释器：/bin/bansh)
+   重置资源服务器
+   #rht-vmctl  reset   classroom/server/desktop
+    
+#ipconfig   --------查看IP地址/Windows  系统查看本机网络配置
+#  ping    双向通信   
+#ctrl  +   c   结束正在进行的命令
+
+
+#pwd  ===>print   working  director
+         用途：查看当前目录
+#cd  ===>chang   director
+         用途：切换工作目录
+         格式：cd   【目录文件夹位置】
+         cd ..  后退、返回上一级  
+         cd ../..  返回上两级
+
+#ls  ====》list  
+         用途：现实当前目录内容
+        格式：ls   【选项】----【目录或文件名】
+     ls命令选项
+       -l  以长格式显示     显示详细属性
+       -A  包括以.开头的隐藏文档
+       -d  显示目录本身（而不是内容）的属性
+       -h  提供易读的容量单位
+   【-lh    -lhd     -lhA    -ld】
+     【ls  --help】
+#cat  -------------------产看文本文件的内容
+   cat  -n  -----显示文本文件时，鉴赏行号的功能
+   cat   /proc/meminfo   ---查看内存信息
+
+#lscpu  -----------查看cpu 信息
+#head(tail)  -n   /etc/passwd  -----查看/etc/passwd/文件前(后)两行
+#grep   （root)   /etc/passwd  -----查看/etc/passwd/文件中包含（root)的行
+  ----------用途：输出带有指定字符串的行
+#ifconfig  ----------Linux中查看IP地址，信息
+#hostname  --------列出当前系统的主机名称
+#poweroff  --------关机
+#reboot    --------重起 
+#mkdir     --------创建目录
+ mkdir  -p --------可以创建多层子目录
+#touch     --------创建文件文本
+#less      --------分屏阅读，支持前后翻业，上下键可以滚动查看，Q键退出
+#/      ------------根目录   Linux所有数据都在此目录下 （Linux系统的起点）
+#dev     =>   device  设备  =》所有设备相关的数据（存放硬盘、键盘、鼠标、光驱等设备文件      
+   hd ------表示IDE设备      
+   sd--------表示SCSI设备       
+   vd---------表示虚拟化设备（只在虚拟机里出现）
+#
+#
+#
+#rm -rf  -------递归删除（目录/文件）且强制删除
+           递归：目录本身以及目录下的所有
+#vim-------文本编辑器（命令模式==键i进入==输入模式==键esc-:==末行模式
+#      wq---保存并退出    q!----强制不保存退出
+#mv  -----（move)移动/改名
+#-------格式：mv  原文件...目标路径
+#重命名-------路径不变的移动
+#cp   -----(copy)复制
+      ——格式：CP  【选项】  原文件   目标路径
+     ——-r   递归，复制目录时必须有此项
+#\    -强制覆盖
+#快捷键：   -ctrl+l  /clear ------------清空整个屏幕
+          -ctrl+c   ---------------结束正在运行的程序
+          -esc+.  /   alt+.  -------粘贴上一个命令的参数
+          -ctrl+u  ---------清空至行首
+          -ctrl+w  ---------往回删除一个单词（以空格界定）
+#mount ----------挂载：让目录成为设备的访问点（建议挂载到自己创建的目录)
+    /dev/cdrom----------光驱设备     
+      访问点：访问设备资源的时候通过的点
+     mount:/dev/sr0    写保护，将以只读方式挂载
+#umount----------卸载
+#通配符的使用
+   -* ：任意多个任意字符          [ ]:多个字符或连续范围中的一个，若无则忽略
+   -? ：单个字符                  { }:多组不同的字符串，全匹配（用逗号隔开）
+#alias   别名    
+#  [.......]#alias    显示当前所有生效的别名
+#设置永久别名  
+   [.......]#vim  /root/.bashrc
+
+   /root/.bashrc  永久别名的配置文件（系统及配置文件）
+
+#uname -a  -------查看系统的详细属性
+#uname  -r    -------------列出内核版本
+#cat  /etc/redhat-release -----------查看红帽系统的版本
+#ssh  (-X) root@ip地址    远程操控此ip地址代表的主机
+   -X代表可以远程打开所操控主机上的图形程序
+#exit  ---------退出远程管理回到真机
+#ctrl +shift  +t  -----------新开一个终端
+#rpm ----------rpm包管理器   
+     #rpm  -q  软件名    查询软件是否安装
+      ...  -ivh  ....  安装软件包
+      ...  -e   ....   卸载软件包
+    【没有依赖关系或只有一个包的时候用rpm】
+#yum  软件包仓库，自动解析依赖关系
+ yum 的搭建
+    #vim  /etc/yum.repos.d/*.repo 
+
+      [ * ]-----------仓库标识
+     name=*   ----------仓库描述信息
+     baserul=网址
+     enabled=1   ----------是否启用该文件
+     gpgcheck=0  ----------是否检测签名认证
+  注：1代表是    0代表否   *代表任意的名字
+   # yum  repolist   -----yum软件包仓库的详细信息
+   #yum  -y   install   软件名   ---------利用yum 装软件包
+   #yum remove  install     软件名  ------利用yum卸载
+   #yum  search install   软件名   ------利用yum查询
+#vim  /etc/hostname  ---------配置永久的主机名
+
+#nmcli   connection  modify   'System  eth0'   ipv4.method  manual  ipv4.addresses  'IP地址/子网掩码   网关地址'   connection.autocomect  yes
+                   ---------------配置IP地址，子网掩码，网关地址 
+#nmcli   connection show   ------------显示网卡
+#nmcli   connection  up  'system  etho' ---------激活配置
+#route    -------------网关查看
+#/etc/resolv.conf   ---------DNS的永久配置文件
+#nslookup  classroom.example.com  -----------查看DNS
+#ls   /dvd/Packages    -------------查看Linux所有安装包
+#   |   --------------------管道操作 ：作用于前面命令的输出结果
+#  echo  ***   ------------在屏幕中显示***
+#  >  ----------覆盖重定向      >>    --------------追加重定向
+#  su  -    -----------------临时切换用户
+#  UID   -------用户             GID   -----------组
+           组：基本组 （私有组）----由系统直接创建，由系统加入
+                  附加组（公共组   从数组）--------自己创建并加入
+#  /etc/passwd  ---------------存放用户基本信息的地方
+#  useradd    -----------------创建用户
+     [root@bettry ~]# head   -1 /etc/passwd
+        root     :      x      :        0      :          0        :           root       :       /root  :       /bin/bash   
+      用户名    密码占位符   UID      基本组的GID     用户描述信息         家目录       解释器程序
+【 常用选项     -u   用户ID    -d  家目录路径           -s     登录shell      -g    基本组      -G 附加组】
+   useradd   -u    1600   用户名   ------------指定UID创建用户
+   useradd   -d    /opt/mulu   mulu     ---------指定家目录下创建用户
+#passwd     设置登录密码      /etc/shadow    ----------存放用户密码信息的地方
+   【非交互式设置密码】-------#echo   密码   |    passwd   --stdin    用户名
+#usermod    --------------修改用户属性
+【 常用选项     -u   用户ID    -d  家目录路径           -s     登录shell      -g    基本组      -G 附加组】
+#id   用户    -----------检查用户ID信息   
+#userdel    -------------删除用户
+           userdel   [-r]     用户名    -----------------连同家目录一并删除    
+#/sbin/nologin   --------------禁止用户登录操作系统
+#groupadd   ----------创建组
+   —groupadd   [-g  组ID ]   组名    
+    注：组的基本信息存放在/etc/group文件里
+#—  gpasswd   -a/d   用户名    组名      添加（-a）用户到组     从组中删除（-d）用户
+   注：组成员的信息存放在/etc/gshadow文件
+#groupmod   -------------修改组属性
+    — groupmod  [-g  组ID ]  [-n   新组名]   组名     
+   grep    组名   /etc/group   --------查看组的基本信息
+#  tar(tarball)备份包    备份与恢复，打包及压缩
+#Linux独有的压缩的格式
+      gzip  -------------->.gz
+      bzip2  --------------->.bz2
+      xz  ----------------->.xz
+ 打包：tar   [选项]   /路径/压缩包的名字   /被归档压缩的源文件
+ 解包：tar   [选项]   /路径/压缩包的名字   -C（大写）   解放位置
+   【tar集成备份工具】
+      —  -c   创建归档        -x 释放归档       -f 指定归档文件名称      
+      —   -z    /   -j   /   -J    调用  .gz   /   .bz2  /.xz  格式的工具进行处理
+      —  -t   显示归档中的文件清单      -C(大写)   释放位置
+     ——  tar   -(z,j,J)cf    备份文件 .tar.(gz,bz2.xz)   被备份的文档
+     ——  tar   -xf   /opt/ 压缩包的名字  -C   /路径（文件夹）--------释放****文件到&&&文件夹下
+     ——  tar  -tf  【/目录/压缩包名字】/root/***.tar.bz2
+#chrony  ----------与服务端沟通时间的软件【NTP时间同步】
+   服务端 ：classroom.example.com
+   注：yum   -y   install   chrony   
+          vim   /etc/chrony.conf  
+          systemctl   restart  chrony     重启服务
+          systemctl    enable   chrony    设置服务器随时启动
+#cron  计划任务  
+    用途：按照设置的时间间隔为用户反复执行某一项固定的系统服务
+    软件包：cronie.crontabs
+    日志文件： /var/log/crond
+     分    时     日     月    周
+    注：*代表匹配范围内任意时间，
+           ，代表分隔多个不连续的时间点
+          - 指定连续时间范围
+           /n  代表指定时间频率，每n
+   ceontab命令的使用
+      ceontab   -e   [-u   用户名]     -------编辑
+      ceontab   -l   [-u   用户名]     -------查看
+      ceontab   -r   [-u   用户名]     -------清除
+
+#权限  —（读取R，写入W，可执行X）
+          读取R权限：能够Ls浏览此目录内容
+          写入W权限：能够执行rm/mv/cp/mkdir/touch/.......等更改目录内容的操作
+          可执行X权限：能够cd切换到此目录
+   适用对象（归属）
+          所有者：拥有此文件/目录的用户 U    
+          所属组：拥有此文件/目录的组   g
+          其他用户：除所有者、所属组以外的用户 O’
+#查看权限  ：使用ls-l  命令
+          以—开头：文本文件
+         以d开头：目录
+          以l开头：快捷方式
+例：ls -l  /etc/passwd  
+     -               rw-        r --           r--   1    root                  root    2005   7月11
+文本文件         u           g             o       属主（所有者）  属组（所有组）
+#chmod   --------------------------设置基本权限
+    格式：   chmod   【-R】   归属关系   +（-/=） 权限类别    文档
+      chmod  【-R】-----------希望目录及目录下的所有目录都不拥有此权限
+    ——mkdir   -m    u+rwx,go-rwx   /dir1---------------创建目录的同时更改权限
+#chown  ---------------设置文档归属  
+       ——chown   [-R]    属主   文档 .....
+       ——chown   [-R]    :属组    文档.....
+       ——chown   [-R]    属主 ：属组    文档.....
+#
+#Set  Gid    -----------------附加权限（特殊权限）
+    附加在属组的X位上
+    适用于目录，Set  GID可以是目录下【新增】的文档自动设置与父目录相同的属组
+    属组的权限标识位会变为S
+  【继承】父目录的所属组身份
+    只作用于【未来】建立的
+#Set  Uid   ----------------附加权限
+      ——适用于可执行文件Set  Uid  可以让使用者具有文件属主的身份及部分权限
+      ——附加在属主的X位上
+      ——属猪的权限标识回变为S
+      ——传递所有者身份
+#Sticky   Bit    
+      ——附加在其他人的X位上
+      ——其他人的权限标识会变成t
+      ——适用于开放W权限的目录  ，可以组织用户滥用W写入权限（禁止操作别人的文档）
+
+#find  ------------查找文件：根据预设的条件递归查找对应的文件
+       ——find   [目录]  [条件1]   [-a  |   -0]   [条件2]
+       ——常用条件表示
+       ——  -type   类型【f —文件  ，  d—目录  ,   l   —快捷方式】
+       ——  -name  "文档名称“
+       ——  -size   +(大于）/-(小于）   文件大小  （K  ，   M    ，G  ）
+       ——   -user   用户名    ——————————————按所有者进行查找
+       ——   -o     ——————————————另个条件满足其中一个即可
+   注：使用find命令的   -exec操作
+      ——find   .......   -exec    处理命令   {}      \;
+       优势：以{}代替每一个结果，逐个处理，遇   \;    结束
+      ——   -iname      根据【名称】查找，忽略大小写
+           #find  /etc/   -iname     "PASSWD"
+      ——   -group   根据所属组查找  
+            #find    /home/    -group   student
+      ——    -maxdepth     ------------限制目录查找的深度（最大层数）
+             #find   /etc/   -maxdepth   1   -name   "*.conf"
+#    -mtime    +/-(*)    --------------根据文件修改时间，所有的时间都是过去时间
+        -mtime   +10     --------------十天之前
+        -mtime    -10     ---------------十天之内
+     #find    /var/log/   -mtime    +100 
+  
+#acl  -------访问控制列表
+         setfacl   
+         ----setfacl   [-R]   -m    U:用户名：权限类别    文档.....     
+         ----setfacl   [-R]    -m    u:lisi:rx   /nsd01     --------------为用户单独设置权限
+         ----setfacl   [-R]   -b    (nsd12)文档    ------------清空所有ACL
+         ----setfacl   [-R]   -x    u:用户名     文档         ---------------删除指定ACL
+         ----setfacl   [-R]   -x    u:用户名    /nsd12(目录） 删除指定用户的权限
+         getfacl    /nsd01      ------------------查看acl权限
+   
+#搭建LDAP  服务器：classroom.example.com
+           利用yum安装sssd     authconfig-gtk    
+           运行authconfig-gtk
+           选择LDAP密码
+           选择LDAP-------------【dc=example,dc=com】指定服务端域名
+           classroom.example.com     -------------指定服务端主机名
+           勾选TLS加密    使用加密证书[http://classroom.example.com /pub/example-ca.crt
+           重启sssd
+           验证   【grep   ldapuser0  /etc/passwd】
+                     【id   ldapuser0】   --------------可看到用户基本信息              
+#NFS共享 
+        服务器:classroom.example.com(网站）  
+         客户端只需访问共享即可
+        1.ping 通    ping   classroom.example.com
+          例：showmount   -e  classroom.example.com       ---查看服务端共享文件
+                [export   list   for    classroom.example.com:/home/guests]
+        2.访问共享文件夹
+            #mkdir   /home/guests
+            #mount   classroom.example.com:/home/guests/ /home/guests
+             #ls   /home/guests
+            su   -   /dapuser0
+
+#  grep    [ 选项  ]    '匹配模式’   文本文件（目录）
+        ——   -^root    ----------------以字符串root开头
+        ——     -root$  -----------------以字符串root结尾
+        ——    -^$   -------------------匹配空行
+         【常用选项】
+                   ——   -v   取反匹配
+                   ——  -i   忽略大小写
+#显示文件有效配置（去掉注释，去掉空行）
+        #grep    -v^#   /etc/login.defs      |    grep   -v^$     
+        #grep    -v^#   /etc/login.defs      |    grep   -v^$    >   /opt/b.txt
+         #vim    /opt/b.txt
+
+
+
+    注：yum服务：为客户端安装软件包，自动解决依赖关系
+          服务端：1.有软件包    2.仓库数据文件     3.共享服务（web或FTP）
+          客户端：书写一个配置文件      /etc/yum.repos.d/*.repo.
+       家里计划任务中所有命令都要是绝对路径
+     例：       *     *      *       *      *    /user/sbin/ifconfig   >>   /opt/1.txt
+        #which   ifconfig   -------搜索命令所对应的执行程序
